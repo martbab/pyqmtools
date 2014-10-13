@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/home/martbab/devel/python/virtual/pyqmtools/bin/python
 
-import pyqmtools
+import pyqmtools as qmt
 from optparse import OptionParser
 import sys
 from time import strftime, localtime
@@ -53,12 +53,12 @@ and ADF QM calculations.'''
 Writes data to standard output when output file is not specified'''
 
     file_types_parsers = {
-        'gaussian' : qmtools.nmr.parsers.GaussianOutputParser,
-        'adf' : qmtools.nmr.parsers.ADFOutputParser
+        'gaussian' : qmt.nmr.parsers.GaussianOutputParser,
+        'adf' : qmt.nmr.parsers.ADFOutputParser
     }
 
-    shielding_types = qmtools.nmr.parsers.ADFOutputParser._shielding_types
-    numbering_types = qmtools.nmr.parsers.ADFOutputParser._atom_numbering
+    shielding_types = qmt.nmr.parsers.ADFOutputParser._shielding_types
+    numbering_types = qmt.nmr.parsers.ADFOutputParser._atom_numbering
 
     opt_parser = OptionParser(
         usage = usage,
@@ -69,7 +69,7 @@ Writes data to standard output when output file is not specified'''
         '-r',
         '--reference-file',
         dest = 'ref_filename',
-        help = qmtools.nmr.datastruct.SigmaReference.read_from_file.__doc__,
+        help = qmt.nmr.datastruct.SigmaReference.read_from_file.__doc__,
         default = None,
         metavar = 'FILENAME'
     )
@@ -103,7 +103,7 @@ Defaults to total shielding tensor''',
         dest = 'verbosity_level',
         type = 'choice',
         choices = ('1', '2', '3'),
-        help = qmtools.nmr.datastruct.SigmaTensor.write_to_file.__doc__,
+        help = qmt.nmr.datastruct.SigmaTensor.write_to_file.__doc__,
         default = '1'
     )
 
@@ -155,7 +155,7 @@ Default is to use input numbering''',
         tens_list = p.read()
         tens_list.sort()
 
-    except qmtools.nmr.parsers.NMRTensorReadError, e:
+    except qmt.nmr.parsers.NMRTensorReadError, e:
         print_error(e)
         
 
@@ -168,7 +168,7 @@ Default is to use input numbering''',
             "Reading file \"%s\" containing secondary references..." %\
             options.ref_filename
         )
-        reference = qmtools.nmr.datastruct.SigmaReference()
+        reference = qmt.nmr.datastruct.SigmaReference()
 
         with open(options.ref_filename, 'r') as ref_file:
             try:

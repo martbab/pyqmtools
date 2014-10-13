@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/home/martbab/devel/python/virtual/pyqmtools/bin/python
 
-import pyqmtools
+import pyqmtools as qmt
 from optparse import OptionParser
 import sys
 from time import strftime, localtime
@@ -57,7 +57,7 @@ def extract_csts(
     max_index = 0
 ):
     tens_list = None
-    tens_stat = qmtools.nmr.datastruct.TensorStats(
+    tens_stat = qmt.nmr.datastruct.TensorStats(
         filenames = inp_filenames,
     )
 
@@ -93,7 +93,7 @@ def extract_csts(
                 tens_list
             )
 
-        except qmtools.nmr.parsers.NMRTensorReadError, e:
+        except qmt.nmr.parsers.NMRTensorReadError, e:
             print_error(e)
 
         except IOError:
@@ -156,7 +156,7 @@ def extract_reference(
                 reference_filename,
             quiet
         )
-        reference = qmtools.nmr.datastruct.SigmaReference()
+        reference = qmt.nmr.datastruct.SigmaReference()
 
         with open(reference_filename, 'r') as ref_file:
             try:
@@ -185,12 +185,12 @@ print a number statistical descriptors (sample mean, sample standard deviation,
     usage = '''Usage: %prog [options] input_files'''
 
     file_types_parsers = {
-        'gaussian' : qmtools.nmr.parsers.GaussianOutputParser,
-        'adf' : qmtools.nmr.parsers.ADFOutputParser
+        'gaussian' : qmt.nmr.parsers.GaussianOutputParser,
+        'adf' : qmt.nmr.parsers.ADFOutputParser
     }
 
-    shielding_types = qmtools.nmr.parsers.ADFOutputParser._shielding_types
-    numbering_types = qmtools.nmr.parsers.ADFOutputParser._atom_numbering
+    shielding_types = qmt.nmr.parsers.ADFOutputParser._shielding_types
+    numbering_types = qmt.nmr.parsers.ADFOutputParser._atom_numbering
 
     opt_parser = OptionParser(
         usage = usage,
@@ -221,7 +221,7 @@ files.''',
         '-r',
         '--reference-file',
         dest = 'ref_filename',
-        help = qmtools.nmr.datastruct.SigmaReference.read_from_file.__doc__,
+        help = qmt.nmr.datastruct.SigmaReference.read_from_file.__doc__,
         default = None,
         metavar = 'FILENAME'
     )

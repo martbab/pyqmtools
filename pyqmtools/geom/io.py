@@ -5,7 +5,7 @@ Set of classes to be used for the reading and writing molecular geometry between
 various sources, such as XYZ files, Gaussian Cubes, and output files generated
 by various QM software.
 """
-from pyqmtoos.util import units as u
+from pyqmtools.util import units as u
 from pyqmtools.util import elements as e
 import datastruct as d
 

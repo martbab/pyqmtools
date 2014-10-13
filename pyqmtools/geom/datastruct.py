@@ -105,8 +105,6 @@ class Atom(object):
             self.coords[1], self.coords[2])
         
 
-    units = property(get_units, set_units)
-    name = property(get_name, set_name)
         
 
 class Coordinates(object):
